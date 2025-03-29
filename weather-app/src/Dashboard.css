@@ -1,0 +1,26 @@
+* {
+  /* outline: 1px dashed orange; */
+}
+
+body {
+  background-image: url("./assets/sky_img.jpg");
+  background-size: cover;
+  background-position: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  z-index: -1;
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  backdrop-filter: blur(50px);
+  z-index: -1;
+}
