@@ -45,8 +45,6 @@ interface currentConditions {
   humidity?: number;
 }
 
-// TODO:
-
 function Dashboard() {
   const [searchQuery, setSearchQuery] = useState("");
   const [weatherData, setWeatherData] = useState<WeatherData | null>(null);
@@ -227,8 +225,8 @@ function Dashboard() {
       )}
 
       {locationEnabled !== false && (
-        <div className="relative z-10 p-4 grid grid-cols-[0.5fr_1.2fr_0.5fr] gap-4 grid-rows-[0.1fr_auto_1.5fr] h-screen py-10 px-25 box-border">
-          <p className="text-2xl font-bold text-white flex flex-row-reverse justify-end items-center">
+        <div className="relative z-10 p-4 box-border grid w-full gap-4 overflow-y-auto grid-cols-1 auto-rows-auto  min-h-screen  h-full lg:grid-cols-[0.5fr_1.2fr_0.5fr] lg:grid-rows-[0.1fr_auto_1.5fr] lg:py-10 lg:px-25 ">
+          <p className="min-w-3xs text-2xl justify-self-center font-bold text-white flex flex-row-reverse justify-end items-center lg:justify-self-start">
             The Weather App
             <img
               src="/weather-icon.svg"
@@ -236,16 +234,20 @@ function Dashboard() {
               style={{ width: "50px" }}
             ></img>
           </p>
-          <form onSubmit={handleSubmit} className=" col-start-2 col-span-1">
+          <form
+            onSubmit={handleSubmit}
+            className="flex flex-col justify-center "
+          >
             <Input
               type="search"
               value={searchQuery}
               onChange={handleInputChange}
               placeholder="Search"
-              className="h-10 text-white text-center font-medium text-lg placeholder:text-white border-none bg-[#bfc6cf]/50 focus-visible:outline focus-visible:ring-1 focus-visible:ring-[#bfc6cf]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#6c94bc] col-span-1"
+              className="text-white text-center font-medium text-lg placeholder:text-white border-none bg-[#bfc6cf]/50 focus-visible:outline focus-visible:ring-1 focus-visible:ring-[#bfc6cf]/50 focus-visible:ring-offset-2 focus-visible:ring-offset-[#6c94bc] lg:row-start-1 lg:col-start-2 lg:col-span-1 lg:h-10"
             />
           </form>
-          <Card className="w-full bg-[#2d61a3] shadow-md border-none row-start-2 col-span-1">
+
+          <Card className="w-full bg-[#2d61a3] shadow-md border-none lg:row-start-2 lg:col-span-1">
             <CardHeader>
               <CardTitle className="text-white">
                 {weatherData?.address?.toLocaleUpperCase() || "..."}
@@ -268,8 +270,8 @@ function Dashboard() {
             </CardFooter>
           </Card>
 
-          <Card className="w-full grid grid-cols-[1fr_1fr_1fr_1fr] grid-rows-[1fr_1fr] bg-[#2d61a3] px-6 shadow-md border-none row-start-2 col-span-1 SUNRISE AND SUNSET DATA">
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-1 col-start-1 col-span-1">
+          <Card className="w-full grid grid-cols-[1fr_1fr_1fr_1fr] lg:grid-rows-[1fr_1fr] bg-[#2d61a3] px-6 shadow-md border-none lg:row-start-2 lg:col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md row-start-1 col-start-1 col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Feels Like
@@ -280,7 +282,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-1 col-start-2 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-1 lg:col-start-2 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Humidity
@@ -291,7 +293,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-2 col-start-1 col-span-">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-2 lg:col-start-1 lg:col-span-">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Min Temp
@@ -302,7 +304,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-2 col-start-2 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-2 lg:col-start-2 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Max Temp
@@ -313,7 +315,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-1 col-start-4 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-1 lg:col-start-4 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Cloud Cover
@@ -324,7 +326,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-2 col-start-4 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-2 lg:col-start-4 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   UV Index
@@ -335,7 +337,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl col-start-3 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:col-start-3 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">
                   Sunrise
@@ -346,7 +348,7 @@ function Dashboard() {
               </CardContent>
             </Card>
 
-            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-xl row-start-2 col-start-3 col-span-1">
+            <Card className="bg-[#bfc6cf]/20 border-none w-full rounded-md lg:row-start-2 lg:col-start-3 lg:col-span-1">
               <CardHeader>
                 <CardTitle className="text-white text-center">Sunset</CardTitle>
               </CardHeader>
@@ -358,7 +360,30 @@ function Dashboard() {
             </Card>
           </Card>
 
-          <Card className="bg-transparent border-none shadow-none col-start-3 col-span-1 row-start-2 max-h-full overflow-auto p-0 gap-6">
+          <Card className="w-full bg-[#2d61a3] border-none lg:row-start-3 lg:col-span-2 px-6">
+            <CardHeader className="p-0">
+              <CardTitle className="text-white">7 Day Forecast</CardTitle>
+            </CardHeader>
+            <CardContent className="h-full flex flex-row justify-around items-center gap-4 overflow-auto pb-4 px-0">
+              {days.map((day) => (
+                <Card className="bg-[#bfc6cf]/20 border-none w-32 h-48 rounded-md">
+                  <CardHeader>
+                    <CardTitle className="text-white text-sm font-medium text-center">
+                      {formatDate(day.datetime)}
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-white text-xl font-bold text-center">
+                    {day?.temp || "Loading"}°C
+                  </CardContent>
+                  <CardFooter className="text-white text-sm font-medium justify-evenly text-center">
+                    {day?.conditions || "Loading"}
+                  </CardFooter>
+                </Card>
+              ))}
+            </CardContent>
+          </Card>
+
+          <Card className="bg-transparent border-none shadow-none lg:col-start-3 lg:col-span-1 lg:row-start-2 lg:max-h-full p-0 gap-6">
             <CardHeader className="p-0">
               <CardTitle className="text-white pl-1">Other Cities</CardTitle>
             </CardHeader>
@@ -393,30 +418,7 @@ function Dashboard() {
             </CardContent>
           </Card>
 
-          <Card className="w-full bg-[#2d61a3] border-none row-start-3 col-span-2">
-            <CardHeader>
-              <CardTitle className="text-white">7 Day Forecast</CardTitle>
-            </CardHeader>
-            <CardContent className="h-full flex flex-row justify-around items-center gap-2">
-              {days.map((day) => (
-                <Card className="bg-[#bfc6cf]/20 border-none w-32 h-48 rounded-md">
-                  <CardHeader>
-                    <CardTitle className="text-white text-sm font-medium text-center">
-                      {formatDate(day.datetime)}
-                    </CardTitle>
-                  </CardHeader>
-                  <CardContent className="text-white text-xl font-bold text-center">
-                    {day?.temp || "Loading"}°C
-                  </CardContent>
-                  <CardFooter className="text-white text-sm font-medium justify-evenly text-center">
-                    {day?.conditions || "Loading"}
-                  </CardFooter>
-                </Card>
-              ))}
-            </CardContent>
-          </Card>
-
-          <Card className="bg-[#2d61a3] border-none row-start-3 col-start-3 col-span-1 flex flex-col justify-center">
+          <Card className="bg-[#2d61a3] border-none lg:row-start-3 lg:col-start-3 lg:col-span-1 flex flex-col justify-center">
             <CardContent className="text-white text-sm  font-normal text-center">
               made with ❤️ by neo
             </CardContent>
